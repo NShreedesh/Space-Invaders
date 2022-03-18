@@ -8,15 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float speed;
 
-    [Header("Screen Position")]
-    private float _screenLeft;
-    private float _screenRight;
-
-    private void Start()
-    {
-        ScreenPositionHelper.Instance.CalculateScreenSides(out _screenLeft, out _screenRight);
-    }
-
     private void Update()
     {
         Move();
@@ -24,11 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (transform.position.x > _screenLeft + 0.5f && controller.PlayerInput.MovementInput < 0)
+        if (transform.position.x > ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && controller.PlayerInput.MovementInput < 0)
         {
             transform.position += Vector3.right * speed * controller.PlayerInput.MovementInput * Time.deltaTime;
         }
-        else if (transform.position.x < _screenRight - 0.5f && controller.PlayerInput.MovementInput > 0)
+        else if (transform.position.x < ScreenPositionHelper.Instance.ScreenRight.x - 0.5f && controller.PlayerInput.MovementInput > 0)
         {
             transform.position += Vector3.right * speed * controller.PlayerInput.MovementInput * Time.deltaTime;
         }

@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     public InputControl InputControl { get; private set; }
 
+    [Header("Movement Input Controls")]
     private float _movementInput;
     public float MovementInput => _movementInput;
 

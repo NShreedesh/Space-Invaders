@@ -4,7 +4,15 @@ public class ScreenPositionHelper : MonoBehaviour
 {
     public static ScreenPositionHelper Instance { get; private set; }
 
+    [Header("Camera Info")]
     [SerializeField] private Camera cam;
+
+    [Header("Screen Info")]
+    [SerializeField] private Vector2 screenLeft;
+    public Vector2 ScreenLeft => screenLeft;
+
+    [SerializeField] private Vector2 screenRight;
+    public Vector2 ScreenRight => screenRight;
 
     private void Awake()
     {
@@ -16,12 +24,14 @@ public class ScreenPositionHelper : MonoBehaviour
         }
     }
 
-    public void CalculateScreenSides(out float screenLeft, out float screenRight)
+    private void Start()
     {
-        var screeLeft = cam.ViewportToWorldPoint(new Vector2(0, 0));
-        var screeRight = cam.ViewportToWorldPoint(new Vector2(1, 0));
+        CalculateScreenSides();
+    }
 
-        screenLeft = screeLeft.x;
-        screenRight = screeRight.x;
+    public void CalculateScreenSides()
+    {
+        screenLeft = cam.ViewportToWorldPoint(new Vector2(0, 0));
+        screenRight = cam.ViewportToWorldPoint(new Vector2(1, 0));
     }
 }

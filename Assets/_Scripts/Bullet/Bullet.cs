@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
+    [Header("Bullet Info")]
     [SerializeField] private float speed;
 
     private void Awake()

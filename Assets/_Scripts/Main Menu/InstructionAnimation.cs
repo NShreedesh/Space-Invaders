@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class InstructionAnimation : MonoBehaviour
 {
-    private int _childCount;
-    private int _childOfChildCount;
+    [Header("Initial Child Count")]
+    private int _noOfChild;
+    private int _noOfChildsChild;
 
-    private int _parentChildCount;
-    private int _childChildCount;
+    [Header("Update Child Count During Animation Check")]
+    private int _checkForChild;
+    private int _checkForChilsChild;
 
     private void Awake()
     {
-        _parentChildCount = transform.childCount;
-        _childChildCount = transform.GetChild(_childCount).childCount;
+        _noOfChild = transform.childCount;
+        _noOfChildsChild = transform.GetChild(_checkForChild).childCount;
     }
 
     private void Start()
@@ -36,16 +38,16 @@ public class InstructionAnimation : MonoBehaviour
 
     private void EnableInstruction()
     {
-        transform.GetChild(_childCount).GetChild(_childOfChildCount).gameObject.SetActive(true);
+        transform.GetChild(_checkForChild).GetChild(_checkForChilsChild).gameObject.SetActive(true);
 
-        if(_childOfChildCount < _childChildCount - 1)
+        if(_checkForChilsChild < _noOfChildsChild - 1)
         {
-            _childOfChildCount++;
+            _checkForChilsChild++;
         }
-        else if (_childCount < _parentChildCount - 1)
+        else if (_checkForChild < _noOfChild - 1)
         {
-            _childCount++;
-            _childOfChildCount = 0;
+            _checkForChild++;
+            _checkForChilsChild = 0;
         }
         else
         {

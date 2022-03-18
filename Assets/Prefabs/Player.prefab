@@ -46,7 +46,6 @@ MonoBehaviour:
   capacity: 20
   objectToSpawn: {fileID: 770065257298787354, guid: 23cc0bc65843a9d4aa8e00ea816e821b, type: 3}
   parentForSpawnningObject: {fileID: 1194856241}
-  spawnningObjectList: []
 --- !u!1 &772786198707715462
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,3 +265,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 772786200074499475}
+  waitTillShootTime: 0.2

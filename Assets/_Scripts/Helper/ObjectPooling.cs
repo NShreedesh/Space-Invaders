@@ -5,13 +5,14 @@ public class ObjectPooling : MonoBehaviour
 {
     public static ObjectPooling Instance { get; private set; }
 
+    [Header("Spawn Object Info")]
     [SerializeField] private int capacity;
     [SerializeField] private GameObject objectToSpawn;
 
     [SerializeField] private Transform parentForSpawnningObject;
     public Transform ParentForSpawnningObject => parentForSpawnningObject;
 
-    [SerializeField] private List<GameObject> spawnningObjectList;
+    private List<GameObject> _spawnningObjectList = new List<GameObject>();
 
 
     private void Awake()
@@ -37,22 +38,22 @@ public class ObjectPooling : MonoBehaviour
             obj.transform.SetParent(parentForSpawnningObject);
             obj.transform.localPosition = Vector3.zero;
             obj.SetActive(false);
-            spawnningObjectList.Add(obj);
+            _spawnningObjectList.Add(obj);
         }
     }
 
     public GameObject EnableObjects()
     {
-        for(int i = 0; i < spawnningObjectList.Count; i++)
+        for(int i = 0; i < _spawnningObjectList.Count; i++)
         {
-            if (spawnningObjectList[i].activeSelf)
+            if (_spawnningObjectList[i].activeSelf)
             {
                 continue;
             }
             else
             {
-                spawnningObjectList[i].SetActive(true);
-                return spawnningObjectList[i].gameObject;
+                _spawnningObjectList[i].SetActive(true);
+                return _spawnningObjectList[i].gameObject;
             }
         }
 

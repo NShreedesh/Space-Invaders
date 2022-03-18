@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class ButtonClick : MonoBehaviour
 {
-    [SerializeField] private Button button;
+    [SerializeField] private Button playButton;
 
     private void Start()
     {
-        button.onClick.AddListener(PlayButtonClicked);
+        playButton.onClick.AddListener(PlayButtonClicked);
     }
 
     private void PlayButtonClicked()

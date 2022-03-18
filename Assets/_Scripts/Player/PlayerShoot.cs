@@ -4,19 +4,26 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
 
+    [Header("Shooting Time")]
+    [SerializeField] private float waitTillShootTime;
+    private float _shootTime;
+
     private void Update()
     {
-        Shoot();
+        if(_shootTime  > 0)
+        {
+            _shootTime -= Time.deltaTime;
+        }
+
+        if(_shootTime <= 0 && controller.PlayerInput.InputControl.Player.Shoot.triggered)
+        {
+            Shoot();
+            _shootTime = waitTillShootTime;
+        }
     }
 
     private void Shoot()
     {
-        if (controller.PlayerInput.InputControl.Player.Shoot.triggered)
-        {
-            var bulletObject = ObjectPooling.Instance.EnableObjects();
-
-            if (bulletObject == null)
-                return;
-        }
+        ObjectPooling.Instance.EnableObjects();
     }
 }
