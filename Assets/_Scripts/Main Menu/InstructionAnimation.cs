@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class InstructionAnimation : MonoBehaviour
 {
-    private int childCount;
-    private int childOfChildCount;
+    private int _childCount;
+    private int _childOfChildCount;
 
-    private int parentChildCount;
-    private int childChildCount;
+    private int _parentChildCount;
+    private int _childChildCount;
 
     private void Awake()
     {
-        parentChildCount = transform.childCount;
-        childChildCount = transform.GetChild(childCount).childCount;
+        _parentChildCount = transform.childCount;
+        _childChildCount = transform.GetChild(_childCount).childCount;
     }
 
     private void Start()
@@ -36,16 +36,16 @@ public class InstructionAnimation : MonoBehaviour
 
     private void EnableInstruction()
     {
-        transform.GetChild(childCount).GetChild(childOfChildCount).gameObject.SetActive(true);
+        transform.GetChild(_childCount).GetChild(_childOfChildCount).gameObject.SetActive(true);
 
-        if(childOfChildCount < childChildCount - 1)
+        if(_childOfChildCount < _childChildCount - 1)
         {
-            childOfChildCount++;
+            _childOfChildCount++;
         }
-        else if (childCount < parentChildCount - 1)
+        else if (_childCount < _parentChildCount - 1)
         {
-            childCount++;
-            childOfChildCount = 0;
+            _childCount++;
+            _childOfChildCount = 0;
         }
         else
         {

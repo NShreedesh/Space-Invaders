@@ -1,5 +1,5 @@
 {
-    "name": "InputAction",
+    "name": "InputControl",
     "maps": [
         {
             "name": "Player",
@@ -7,21 +7,21 @@
             "actions": [
                 {
                     "name": "Movement",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "31c39f38-4aa5-4590-913d-cdcc588469d9",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Shoot",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "5cc19ce1-0e76-404b-96f7-0cad7422f5b5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
