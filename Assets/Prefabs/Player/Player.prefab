@@ -266,3 +266,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 772786200074499475}
   waitTillShootTime: 0.2
+  shootingAudioClip: {fileID: 8300000, guid: acc250ff3a538874880ad2b3f09f488b, type: 3}

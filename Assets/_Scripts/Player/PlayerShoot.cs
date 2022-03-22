@@ -8,6 +8,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float waitTillShootTime;
     private float _shootTime;
 
+    [Header("Shooting Audio")]
+    [SerializeField] private AudioClip shootingAudioClip;
+
     private void Update()
     {
         if(_shootTime  > 0)
@@ -25,5 +28,6 @@ public class PlayerShoot : MonoBehaviour
     private void Shoot()
     {
         ObjectPooling.Instance.EnableObjects();
+        AudioManager.Instance.PlayOneShotAudio(shootingAudioClip);
     }
 }
