@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 
     [Header("Bullet Info")]
     [SerializeField] private float speed;
+    [SerializeField] private float disableAfterTime =  3f;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         BulletVelocity();
-        Invoke(nameof(DisableBullet), 3);
+        Invoke(nameof(DisableBullet), disableAfterTime);
     }
 
     private void OnDisable()

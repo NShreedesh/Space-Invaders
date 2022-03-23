@@ -22,10 +22,7 @@ public class ScreenPositionHelper : MonoBehaviour
         {
             Destroy(this);
         }
-    }
 
-    private void Start()
-    {
         CalculateScreenSides();
     }
 
