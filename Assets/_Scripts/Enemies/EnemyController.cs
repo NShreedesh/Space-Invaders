@@ -21,6 +21,10 @@ public class EnemyController : MonoBehaviour
     [Header("Camera Info")]
     [SerializeField] private Camera cam;
 
+    [Header("Enemy Position Info")]
+    [HideInInspector] public GameObject leftEnemy;
+    [HideInInspector] public GameObject rightEnemy;
+
     private void Start()
     {
         _xPosition = startingXSpacing;
@@ -35,6 +39,21 @@ public class EnemyController : MonoBehaviour
         {
             for (int x = 0; x < columnCount; x++)
             {
+                // Spawn Left and right enemy for checking the position with screen during movement.
+                if (y == 0 && x == 0)
+                {
+                    leftEnemy = new GameObject();
+                    leftEnemy.transform.parent = transform;
+                    leftEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
+                }
+
+                if(y == invadersPrefabs.Length - 1 && x == columnCount - 1)
+                {
+                    rightEnemy = new GameObject();
+                    rightEnemy.transform.parent = transform;
+                    rightEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
+                }
+
                 Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
                 _xPosition += inBetweenXSpacing;
             }

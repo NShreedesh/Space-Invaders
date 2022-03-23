@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerPosition()
     {
         float midPosition = (ScreenPositionHelper.Instance.ScreenLeft.x + ScreenPositionHelper.Instance.ScreenRight.x) / 2;
-        float bottomPosition = ScreenPositionHelper.Instance.ScreenLeft.y + 1.5f;
+        float bottomPosition = ScreenPositionHelper.Instance.ScreenLeft.y + 3.5f;
         transform.position = new Vector2(midPosition, bottomPosition);
     }
 }
