@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invadersPrefabs:
   - {fileID: 3126379744654729343, guid: 8f66a8401aaba0846900aa5436a8a737, type: 3}
+  - {fileID: 3126379744654729343, guid: 8f66a8401aaba0846900aa5436a8a737, type: 3}
+  - {fileID: 6372561475107507842, guid: 416bd8243f865254b8a60dd417add4ca, type: 3}
   - {fileID: 6372561475107507842, guid: 416bd8243f865254b8a60dd417add4ca, type: 3}
   - {fileID: 7939018977520528303, guid: 301b1ca0306fe1e488142de43610eaf3, type: 3}
   columnCount: 10

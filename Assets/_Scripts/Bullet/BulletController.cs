@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         _rb.velocity = Vector2.up * speed;
     }
 
-    private void DisableBullet()
+    public void DisableBullet()
     {
         transform.SetParent(ObjectPooling.Instance.ParentForSpawnningObject);
         transform.localPosition = Vector2.zero;

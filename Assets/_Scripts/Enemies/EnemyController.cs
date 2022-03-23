@@ -7,7 +7,6 @@ public class EnemyController : MonoBehaviour
 
     [Header("Position Info")]
     [SerializeField] private int columnCount;
-    [SerializeField] private int rowCount;
 
     [Header("Spacing Info")]
     [Range(0.5f, 1f)]
@@ -31,12 +30,12 @@ public class EnemyController : MonoBehaviour
 
     private void EnemySpawn()
     {
-        //Spawn Enemy.
-        for (int y = 0; y < rowCount; y++)
+        //Spawn Enemy (rowCount = invadersPrefab.Length)
+        for (int y = 0; y < invadersPrefabs.Length; y++)
         {
             for (int x = 0; x < columnCount; x++)
             {
-                Instantiate(invadersPrefabs[0], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
+                Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
                 _xPosition += inBetweenXSpacing;
             }
             _xPosition = startingXSpacing;
