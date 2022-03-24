@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -25,9 +26,14 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public GameObject leftEnemy;
     [HideInInspector] public GameObject rightEnemy;
 
+    [Header("Invader List Info")]
+    [SerializeField] private InvaderInfo[] invaderInfo;
+    private SpriteRenderer[,] invaderList;
+
     private void Start()
     {
         _xPosition = startingXSpacing;
+        invaderList = new SpriteRenderer[columnCount, invadersPrefabs.Length];
 
         EnemySpawn();
     }
@@ -47,14 +53,16 @@ public class EnemyController : MonoBehaviour
                     leftEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
                 }
 
-                if(y == invadersPrefabs.Length - 1 && x == columnCount - 1)
+                GameObject spawnnedInvader = Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
+                invaderList[x, y] = spawnnedInvader.GetComponent<SpriteRenderer>();
+
+                if (y == invadersPrefabs.Length - 1 && x == columnCount - 1)
                 {
                     rightEnemy = new GameObject();
                     rightEnemy.transform.parent = transform;
                     rightEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
                 }
 
-                Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
                 _xPosition += inBetweenXSpacing;
             }
             _xPosition = startingXSpacing;
@@ -78,4 +86,34 @@ public class EnemyController : MonoBehaviour
         // Enemy vertically positioning some steps down from top of the screen.
         transform.position = new Vector2(transform.position.x, -ScreenPositionHelper.Instance.ScreenLeft.y - _yPosition - 2);
     }
+
+    public void InvaderAnimation()
+    {
+        for (int y = 0; y < invadersPrefabs.Length; y++)
+        {
+            for (int x = 0; x < columnCount; x++)
+            {
+                if (invaderList[x, y] == null) continue;
+
+                var enemyHit = invaderList[x, y].GetComponent<EnemyHit>();
+                if (enemyHit == null) return;
+
+                if(invaderList[x, y].sprite == invaderInfo[enemyHit.enemyNumber].sprite[0])
+                {
+                    invaderList[x, y].sprite = invaderInfo[enemyHit.enemyNumber].sprite[1];
+                }
+                else if(invaderList[x, y].sprite == invaderInfo[enemyHit.enemyNumber].sprite[1])
+                {
+                    invaderList[x, y].sprite = invaderInfo[enemyHit.enemyNumber].sprite[0];
+                }
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class InvaderInfo
+{
+    public string name;
+    public Sprite[] sprite;
 }

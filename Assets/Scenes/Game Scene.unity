@@ -315,6 +315,19 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   leftEnemy: {fileID: 0}
   rightEnemy: {fileID: 0}
+  invaderInfo:
+  - name: Invader 1
+    sprite:
+    - {fileID: 21300000, guid: c6fb1252b72d6754abf22ea508c2d4b3, type: 3}
+    - {fileID: 21300000, guid: 53bd4a71f73511b4e80bb7ab254de12c, type: 3}
+  - name: Invader 2
+    sprite:
+    - {fileID: 21300000, guid: 7203530f3c68b964298af36efc25df01, type: 3}
+    - {fileID: 21300000, guid: afa2d44030e5fcd41a6f5e755d423955, type: 3}
+  - name: Invader 3
+    sprite:
+    - {fileID: 21300000, guid: 7a7e45ff18c925649a9894709bcd3c88, type: 3}
+    - {fileID: 21300000, guid: 64424b585b7d3e745884e1253a5d82c1, type: 3}
 --- !u!114 &364611011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772786200074499474, guid: ee800749efdf57c469175779ae3b529a, type: 3}
       propertyPath: waitTillShootTime
-      value: 0.15
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee800749efdf57c469175779ae3b529a, type: 3}

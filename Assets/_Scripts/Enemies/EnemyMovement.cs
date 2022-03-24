@@ -22,16 +22,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
-        if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 1 && _moveLeft)
+        if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && _moveLeft)
         {
             transform.position -= new Vector3(0, offset, 0);
+            controller.InvaderAnimation();
             _moveLeft = false;
             return;
         }
 
-        if (controller.rightEnemy.transform.position.x >= ScreenPositionHelper.Instance.ScreenRight.x - 1 && !_moveLeft)
+        if (controller.rightEnemy.transform.position.x >= ScreenPositionHelper.Instance.ScreenRight.x - 0.5f && !_moveLeft)
         {
             transform.position -= new Vector3(0, offset, 0);
+            controller.InvaderAnimation();
             _moveLeft = true;
             return;
         }
@@ -39,10 +41,12 @@ public class EnemyMovement : MonoBehaviour
         if (_moveLeft)
         {
             transform.position -= new Vector3(offset, 0, 0);
+            controller.InvaderAnimation();
         }
         else
         {
             transform.position += new Vector3(offset, 0, 0);
+            controller.InvaderAnimation();
         }
     }
 }
