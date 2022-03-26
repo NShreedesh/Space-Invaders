@@ -28,6 +28,6 @@ public class PlayerShoot : MonoBehaviour
     private void Shoot()
     {
         ObjectPooling.Instance.EnableObjects();
-        AudioManager.Instance.PlayOneShotAudio(shootingAudioClip);
+        AudioManager.Instance.Play_PlayerShootAudio(shootingAudioClip);
     }
 }

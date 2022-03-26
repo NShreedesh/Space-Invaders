@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86424379def961942b7cda135b1432e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 20
+  capacity: 25
   objectToSpawn: {fileID: 770065257298787354, guid: 23cc0bc65843a9d4aa8e00ea816e821b, type: 3}
   parentForSpawnningObject: {fileID: 1194856241}
 --- !u!1 &772786198707715462
@@ -265,5 +265,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 772786200074499475}
-  waitTillShootTime: 0.2
-  shootingAudioClip: {fileID: 8300000, guid: acc250ff3a538874880ad2b3f09f488b, type: 3}
+  waitTillShootTime: 0.5
+  shootingAudioClip: {fileID: 8300000, guid: f8ffb3f45bf1b814c871b88afd6a50c6, type: 3}

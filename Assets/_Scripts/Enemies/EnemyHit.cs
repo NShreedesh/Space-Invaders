@@ -10,7 +10,7 @@ public class EnemyHit : MonoBehaviour
 
     public void TakeDamage()
     {
-        AudioManager.Instance.PlayOneShotAudio(bulletHit);
+        AudioManager.Instance.Play_EnemyDeadAudio(bulletHit);
 
         Destroy(gameObject);
     }

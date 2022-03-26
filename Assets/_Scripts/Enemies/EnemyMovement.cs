@@ -10,6 +10,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float movementSpeed = 1;
     private bool _moveLeft;
 
+    [Header("Audio Info")]
+    [SerializeField] private AudioClip[] movementAudioClip;
+     
     private void Start()
     {
         InvokeRepeating(nameof(Move), movementSpeed, movementSpeed);
@@ -24,29 +27,45 @@ public class EnemyMovement : MonoBehaviour
     {
         if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && _moveLeft)
         {
-            transform.position -= new Vector3(0, offset, 0);
-            controller.InvaderAnimation();
-            _moveLeft = false;
+            MoveVertically(false);
             return;
         }
 
         if (controller.rightEnemy.transform.position.x >= ScreenPositionHelper.Instance.ScreenRight.x - 0.5f && !_moveLeft)
         {
-            transform.position -= new Vector3(0, offset, 0);
-            controller.InvaderAnimation();
-            _moveLeft = true;
+            MoveVertically(true);
             return;
         }
 
+        // change position of invaders parent with certain amount of offset.
         if (_moveLeft)
         {
-            transform.position -= new Vector3(offset, 0, 0);
-            controller.InvaderAnimation();
+            MoveHorizontally(-offset);
         }
         else
         {
-            transform.position += new Vector3(offset, 0, 0);
-            controller.InvaderAnimation();
+            MoveHorizontally(offset);
         }
+    }
+
+    private void MoveHorizontally(float offsetToMove)
+    {
+        transform.position += new Vector3(offsetToMove, 0, 0);
+        PlayMovementAudio();
+        controller.InvaderAnimation();
+    }
+
+    private void MoveVertically(bool moveLeft)
+    {
+        transform.position -= new Vector3(0, offset, 0);
+        PlayMovementAudio();
+        controller.InvaderAnimation();
+        _moveLeft = moveLeft;
+    }
+
+    private void PlayMovementAudio()
+    {
+        int movementClipCount = Random.Range(0, 4);
+        AudioManager.Instance.Play_EnemyMovementAudio(movementAudioClip[movementClipCount]);
     }
 }
