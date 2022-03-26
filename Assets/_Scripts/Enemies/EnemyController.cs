@@ -34,8 +34,10 @@ public class EnemyController : MonoBehaviour
     {
         _xPosition = startingXSpacing;
         invaderList = new SpriteRenderer[columnCount, invadersPrefabs.Length];
-
         EnemySpawn();
+
+        InvokeRepeating(nameof(InvaderScanLeft), 1, 1);
+        InvokeRepeating(nameof(InvaderScanRight), 1, 1);
     }
 
     private void EnemySpawn()
@@ -109,11 +111,40 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-}
 
-[System.Serializable]
-public class InvaderInfo
-{
-    public string name;
-    public Sprite[] sprite;
+    // Scans from left and leftEnemy Position moves to new Position.
+    private void InvaderScanLeft()
+    {
+        for (int x = 0; x < columnCount; x++)
+        {
+            for (int y = 0; y < invadersPrefabs.Length; y++)
+            {
+                if(invaderList[x, y] == null) continue;
+
+                else
+                {
+                    leftEnemy.transform.position = invaderList[x, y].transform.position;
+                    return;
+                }
+            }
+        }
+    }
+
+    // Scans from right and leftEnemy Position moves to new Position.
+    private void InvaderScanRight()
+    {
+        for (int x = columnCount - 1; x >= 0; x--)
+        {
+            for (int y = 0; y < invadersPrefabs.Length; y++)
+            {
+                if (invaderList[x, y] == null) continue;
+
+                else
+                {
+                    rightEnemy.transform.position = invaderList[x, y].transform.position;
+                    return;
+                }
+            }
+        }
+    }
 }

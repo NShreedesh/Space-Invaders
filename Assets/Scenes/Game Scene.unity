@@ -1652,6 +1652,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 772786200074499474, guid: ee800749efdf57c469175779ae3b529a, type: 3}
+      propertyPath: shootingAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f8ffb3f45bf1b814c871b88afd6a50c6, type: 3}
+    - target: {fileID: 772786200074499474, guid: ee800749efdf57c469175779ae3b529a, type: 3}
       propertyPath: waitTillShootTime
       value: 0.5
       objectReference: {fileID: 0}
