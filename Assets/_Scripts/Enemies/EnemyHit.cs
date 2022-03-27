@@ -1,17 +1,15 @@
 using UnityEngine;
 
-public class EnemyHit : MonoBehaviour
+public class EnemyHit : Hit
 {
-    [Range(0, 2)]
-    public int enemyNumber;
+    [Header("Score Info")]
+    [SerializeField] private int pointForEnemy;
 
-    [Header("Bullet Hit")]
-    [SerializeField] private AudioClip bulletHit;
-
-    public void TakeDamage()
+    public override void TakeDamage()
     {
-        AudioManager.Instance.Play_EnemyDeadAudio(bulletHit);
+        base.TakeDamage();
 
+        ScoreManager.Instance.UpdateScore(pointForEnemy);
         Destroy(gameObject);
     }
 }

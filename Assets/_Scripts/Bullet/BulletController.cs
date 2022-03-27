@@ -10,6 +10,8 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float disableAfterTime =  3f;
 
+    private Transform _parentForTheBullet;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -17,6 +19,8 @@ public class BulletController : MonoBehaviour
 
     private void OnEnable()
     {
+        _parentForTheBullet = transform.parent;
+
         BulletVelocity();
         Invoke(nameof(DisableBullet), disableAfterTime);
     }
@@ -35,7 +39,7 @@ public class BulletController : MonoBehaviour
 
     public void DisableBullet()
     {
-        transform.SetParent(ObjectPooling.Instance.ParentForSpawnningObject);
+        transform.SetParent(_parentForTheBullet);
         transform.localPosition = Vector2.zero;
         gameObject.SetActive(false);
     }

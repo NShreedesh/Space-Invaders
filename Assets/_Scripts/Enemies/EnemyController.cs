@@ -9,6 +9,11 @@ public class EnemyController : MonoBehaviour
     [Header("Position Info")]
     [SerializeField] private int columnCount;
 
+    [Header("Invader Parent Info")]
+    [SerializeField] private Transform invadersSpawnParent1;
+    [SerializeField] private Transform invadersSpawnParent2;
+    [SerializeField] private Transform invadersSpawnParent3;
+
     [Header("Spacing Info")]
     [Range(0.5f, 1f)]
     [SerializeField] private float startingXSpacing;
@@ -51,16 +56,34 @@ public class EnemyController : MonoBehaviour
                 if (y == 0 && x == 0)
                 {
                     leftEnemy = new GameObject();
+                    leftEnemy.name = "LeftEnemyPosition";
                     leftEnemy.transform.parent = transform;
                     leftEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
                 }
 
-                GameObject spawnnedInvader = Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity, transform);
+                GameObject spawnnedInvader = Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity);
+
+                // Assign Enemy Parents for different kind.
+                var enemyInfo = spawnnedInvader.GetComponent<EnemyInfo>();
+                if (enemyInfo.enemyNumber == 0)
+                {
+                    spawnnedInvader.transform.parent = invadersSpawnParent1;
+                }
+                else if(enemyInfo.enemyNumber == 1)
+                {
+                    spawnnedInvader.transform.parent = invadersSpawnParent2;
+                }
+                else if(enemyInfo.enemyNumber == 2)
+                {
+                    spawnnedInvader.transform.parent = invadersSpawnParent3;
+                }
+
                 invaderList[x, y] = spawnnedInvader.GetComponent<SpriteRenderer>();
 
                 if (y == invadersPrefabs.Length - 1 && x == columnCount - 1)
                 {
                     rightEnemy = new GameObject();
+                    rightEnemy.name = "RightEnemyPosition";
                     rightEnemy.transform.parent = transform;
                     rightEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
                 }
@@ -97,16 +120,16 @@ public class EnemyController : MonoBehaviour
             {
                 if (invaderList[x, y] == null) continue;
 
-                var enemyHit = invaderList[x, y].GetComponent<EnemyHit>();
-                if (enemyHit == null) return;
+                var enemyInfo = invaderList[x, y].GetComponent<EnemyInfo>();
+                if (enemyInfo == null) return;
 
-                if(invaderList[x, y].sprite == invaderInfo[enemyHit.enemyNumber].sprite[0])
+                if(invaderList[x, y].sprite == invaderInfo[enemyInfo.enemyNumber].sprite[0])
                 {
-                    invaderList[x, y].sprite = invaderInfo[enemyHit.enemyNumber].sprite[1];
+                    invaderList[x, y].sprite = invaderInfo[enemyInfo.enemyNumber].sprite[1];
                 }
-                else if(invaderList[x, y].sprite == invaderInfo[enemyHit.enemyNumber].sprite[1])
+                else if(invaderList[x, y].sprite == invaderInfo[enemyInfo.enemyNumber].sprite[1])
                 {
-                    invaderList[x, y].sprite = invaderInfo[enemyHit.enemyNumber].sprite[0];
+                    invaderList[x, y].sprite = invaderInfo[enemyInfo.enemyNumber].sprite[0];
                 }
             }
         }

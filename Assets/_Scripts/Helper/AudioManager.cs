@@ -7,8 +7,10 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource enemyMovementSourceEffect;
 
-    [SerializeField] private AudioSource shootEffectSource;
+    [SerializeField] private AudioSource playerShootEffectSource;
     [SerializeField] private AudioSource enemyDeadEffectSource;
+
+    [SerializeField] private AudioSource enemyShootEffectSource;
 
     private void Awake()
     {
@@ -25,7 +27,9 @@ public class AudioManager : MonoBehaviour
 
     public void Play_PlayerShootAudio(AudioClip audioClip)
     {
-        shootEffectSource.PlayOneShot(audioClip);
+        if (audioClip == null) return;
+
+        playerShootEffectSource.PlayOneShot(audioClip);
     }
 
     public void Play_EnemyDeadAudio(AudioClip audioClip)
@@ -36,5 +40,11 @@ public class AudioManager : MonoBehaviour
     public void Play_EnemyMovementAudio(AudioClip audioClip)
     {
         enemyDeadEffectSource.PlayOneShot(audioClip);
+    }
+
+
+    public void Play_EnemyShootAudio(AudioClip audioClip)
+    {
+        enemyShootEffectSource.PlayOneShot(audioClip);
     }
 }

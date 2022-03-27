@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
+    [SerializeField] private ObjectPooling pool;
 
     [Header("Shooting Time")]
     [SerializeField] private float waitTillShootTime;
@@ -27,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        ObjectPooling.Instance.EnableObjects();
+        pool.EnableObjects();
         AudioManager.Instance.Play_PlayerShootAudio(shootingAudioClip);
     }
 }

@@ -8,9 +8,18 @@ public class BulletHit : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            if(collision.TryGetComponent<EnemyHit>(out EnemyHit enemyHealth))
+            if(collision.TryGetComponent<EnemyHit>(out EnemyHit enemyHit))
             {
-                enemyHealth.TakeDamage();
+                enemyHit.TakeDamage();
+                bulletController.DisableBullet();
+            }
+        }
+
+        else if (collision.CompareTag("Player"))
+        {
+            if (collision.TryGetComponent<PlayerHit>(out PlayerHit playerHit))
+            {
+                playerHit.TakeDamage();
                 bulletController.DisableBullet();
             }
         }

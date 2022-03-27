@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capacity: 25
-  objectToSpawn: {fileID: 770065257298787354, guid: 23cc0bc65843a9d4aa8e00ea816e821b, type: 3}
+  objectToSpawn: {fileID: 314760892868569649, guid: ab6ce7f3e1532ad4ea88ef85c5e9f039, type: 3}
   parentForSpawnningObject: {fileID: 1194856241}
 --- !u!1 &772786198707715462
 GameObject:
@@ -143,9 +143,10 @@ GameObject:
   - component: {fileID: 772786200074499475}
   - component: {fileID: 772786200074499476}
   - component: {fileID: 772786200074499474}
+  - component: {fileID: 1258776396}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +198,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0015076697, y: -0.0056345463}
@@ -265,5 +266,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 772786200074499475}
+  pool: {fileID: 1194856242}
   waitTillShootTime: 0.5
   shootingAudioClip: {fileID: 8300000, guid: f8ffb3f45bf1b814c871b88afd6a50c6, type: 3}
+--- !u!114 &1258776396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772786200074499177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afeb0609016eec644978fdaeabea4f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHit: {fileID: 8300000, guid: f1ef11bcf71fa844b9e89de8df324ff6, type: 3}

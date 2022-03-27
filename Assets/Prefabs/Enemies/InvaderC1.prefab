@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7939018977520528297}
   - component: {fileID: 7939018977520528296}
   - component: {fileID: 4423087714513973462}
+  - component: {fileID: -1151481818086865736}
   m_Layer: 8
   m_Name: InvaderC1
   m_TagString: Enemy
@@ -122,5 +123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a0caa6a8273ad49a37f450c3318863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyNumber: 2
   bulletHit: {fileID: 8300000, guid: 9ab9b8cc950ec4845bac23094d12715d, type: 3}
+  pointForEnemy: 50
+--- !u!114 &-1151481818086865736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939018977520528303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba33995b0427a64eaeb6cea7fbff47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyNumber: 2

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -12,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Audio Info")]
     [SerializeField] private AudioClip[] movementAudioClip;
-     
+
     private void Start()
     {
         InvokeRepeating(nameof(Move), movementSpeed, movementSpeed);
