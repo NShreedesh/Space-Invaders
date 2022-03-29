@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerHit : Hit
 {
-    public override void TakeDamage()
+    public void TakeDamage()
     {
-        base.TakeDamage();
+        AudioManager.Instance.Play_EnemyDeadAudio(bulletHit);
         HealthManager.Instance.UpdateHealth();
     }
 }

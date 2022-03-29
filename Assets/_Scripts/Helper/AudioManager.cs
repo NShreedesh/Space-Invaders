@@ -5,12 +5,17 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    [Header("Enemy Audio Source Info")]
     [SerializeField] private AudioSource enemyMovementSourceEffect;
-
-    [SerializeField] private AudioSource playerShootEffectSource;
     [SerializeField] private AudioSource enemyDeadEffectSource;
-
     [SerializeField] private AudioSource enemyShootEffectSource;
+
+    [Header("Player Audio Source Info")]
+    [SerializeField] private AudioSource playerShootEffectSource;
+    [SerializeField] private AudioSource playerDeadEffectSource;
+
+    [Header("Boss Audio Source Info")]
+    [SerializeField] private AudioSource redInvaderSpawnEffectSource;
 
     private void Awake()
     {
@@ -37,14 +42,30 @@ public class AudioManager : MonoBehaviour
         enemyDeadEffectSource.PlayOneShot(audioClip);
     }
 
+    public void Play_PlayerDeadAudio(AudioClip audioClip)
+    {
+        playerDeadEffectSource.PlayOneShot(audioClip);
+    }
+
     public void Play_EnemyMovementAudio(AudioClip audioClip)
     {
-        enemyDeadEffectSource.PlayOneShot(audioClip);
+        enemyMovementSourceEffect.PlayOneShot(audioClip);
     }
 
 
     public void Play_EnemyShootAudio(AudioClip audioClip)
     {
         enemyShootEffectSource.PlayOneShot(audioClip);
+    }
+
+    public void Play_RedInvaderSpawnEffectAudio(AudioClip audioClip)
+    {
+        redInvaderSpawnEffectSource.clip = audioClip;
+        redInvaderSpawnEffectSource.Play();
+    }
+
+    public void Stop_RedInvaderSpawnEffectAudio()
+    {
+        redInvaderSpawnEffectSource.Stop();
     }
 }

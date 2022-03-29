@@ -14,6 +14,9 @@ public class BossController : MonoBehaviour
     private WaitForSeconds _waitForSecondsForFirstBoss;
     private WaitForSeconds _waitForSecondsForOtherBoss;
 
+    [Header("Audio Source Info")]
+    [SerializeField] private AudioClip redInvaderspawnAudio;
+
 
     private void Start()
     {
@@ -35,6 +38,8 @@ public class BossController : MonoBehaviour
                     -ScreenPositionHelper.Instance.ScreenLeft.y - 2),
                     Quaternion.identity,
                     transform);
+
+                AudioManager.Instance.Play_RedInvaderSpawnEffectAudio(redInvaderspawnAudio);
             }
 
             yield return _waitForSecondsForOtherBoss;

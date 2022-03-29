@@ -9,6 +9,12 @@ public class BossMovement : MonoBehaviour
     private void Update()
     {
         Move();
+
+        if(ScreenPositionHelper.Instance.ScreenRight.x + 1 < transform.position.x)
+        {
+            Destroy(gameObject);
+            AudioManager.Instance.Stop_RedInvaderSpawnEffectAudio();
+        }
     }
 
     private void Move()
