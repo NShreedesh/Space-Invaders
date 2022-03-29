@@ -6,7 +6,9 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private ObjectPooling pool;
 
     [Header("Shooting Time")]
-    [SerializeField] private float waitTillShootTime;
+    private float _waitTillShootTime;
+    [SerializeField] private float minWaitTillShootTime;
+    [SerializeField] private float maxWaitTillShootTime;
     private float _shootTime;
 
     [Header("Shooting Audio")]
@@ -26,10 +28,11 @@ public class EnemyShoot : MonoBehaviour
             _shootTime -= Time.deltaTime;
         }
 
-        if (_shootTime <= 0)
+        if (_shootTime <= 0 && shooterInvaderParent.transform.childCount > 0)
         {
             Shoot();
-            _shootTime = waitTillShootTime;
+            _waitTillShootTime = Random.Range(minWaitTillShootTime, maxWaitTillShootTime);
+            _shootTime = _waitTillShootTime;
         }
     }
 
@@ -40,11 +43,14 @@ public class EnemyShoot : MonoBehaviour
         // Selecting totally random numbers but currently only works for 2 bullets.
         for (int i = 0; i < howManyShooterShootsAtOnce; i++)
         {
-            _randomShooter = Random.Range(0, shooterInvaderParent.transform.childCount);
-
-            while(_previousRandomShooter == _randomShooter)
+            int childCount = shooterInvaderParent.transform.childCount;
+            _randomShooter = Random.Range(0, childCount);
+            if(childCount > 1)
             {
-                _randomShooter = Random.Range(0, shooterInvaderParent.transform.childCount);
+                while (_previousRandomShooter == _randomShooter)
+                {
+                    _randomShooter = Random.Range(0, shooterInvaderParent.transform.childCount);
+                }
             }
 
             _noOfShooter.Add(_randomShooter);
