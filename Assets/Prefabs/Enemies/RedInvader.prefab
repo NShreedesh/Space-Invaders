@@ -321,6 +321,7 @@ MonoBehaviour:
   pointForEnemy: 120
   pointText: {fileID: 3719559837725060898}
   removeEnemyAfterTime: 1
+  pauseAfterDamageTime: 0.5
 --- !u!114 &75111201130917126
 MonoBehaviour:
   m_ObjectHideFlags: 0

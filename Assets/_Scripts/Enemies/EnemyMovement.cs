@@ -26,6 +26,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
+        if (GameManager.Instance.gameState != GameState.Play) return;
+
+
         if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && _moveLeft)
         {
             MoveVertically(false);

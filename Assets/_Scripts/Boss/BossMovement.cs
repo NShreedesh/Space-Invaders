@@ -8,6 +8,8 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.gameState != GameState.Play) return; 
+
         Move();
 
         if (ScreenPositionHelper.Instance.ScreenRight.x + 1 < transform.position.x)

@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.gameState != GameState.Play) return;
+
         Move();
     }
 

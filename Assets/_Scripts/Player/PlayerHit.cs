@@ -6,6 +6,8 @@ public class PlayerHit : Hit
 {
     public void TakeDamage()
     {
+        StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.Pause, pauseAfterDamageTime));
+
         AudioManager.Instance.Play_EnemyDeadAudio(bulletHit);
         HealthManager.Instance.UpdateHealth();
     }

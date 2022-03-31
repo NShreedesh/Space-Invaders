@@ -29,6 +29,8 @@ public class EnemyHit : Hit
 
     public void TakeDamage()
     {
+        StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.Pause, pauseAfterDamageTime));
+
         AudioManager.Instance.Play_EnemyDeadAudio(bulletHit);
         ScoreManager.Instance.UpdateScore(pointForEnemy);
 

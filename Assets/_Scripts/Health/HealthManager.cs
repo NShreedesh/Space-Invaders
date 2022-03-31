@@ -36,7 +36,7 @@ public class HealthManager : MonoBehaviour
         {
             healthImages[health].gameObject.SetActive(false);
 
-            if (health == 0)
+            if (health <= 0)
             {
                 Dead();
             }

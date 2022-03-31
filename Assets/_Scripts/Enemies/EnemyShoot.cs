@@ -23,6 +23,9 @@ public class EnemyShoot : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.gameState != GameState.Play) return;
+
+
         if (_shootTime > 0)
         {
             _shootTime -= Time.deltaTime;

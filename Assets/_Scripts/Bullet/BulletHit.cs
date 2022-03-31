@@ -20,7 +20,7 @@ public class BulletHit : MonoBehaviour
             if (collision.TryGetComponent<PlayerHit>(out PlayerHit playerHit))
             {
                 playerHit.TakeDamage();
-                bulletController.DisableBullet();
+                 bulletController.DisableBullet();
             }
         }
     }
