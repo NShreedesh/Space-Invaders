@@ -4,4 +4,5 @@ public class Hit : MonoBehaviour
 {
     [Header("Bullet Hit")]
     [SerializeField] protected AudioClip bulletHit;
+    public bool isDead;
 }

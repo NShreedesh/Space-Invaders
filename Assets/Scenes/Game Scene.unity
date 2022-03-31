@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redInvaderPrefab: {fileID: 1825240422430729558, guid: 8f79feda1ca9bd54ab20f25ece8c5c11, type: 3}
   totalNumberOfBoss: 3
-  firstBossSpawnTime: 15
+  firstBossSpawnTime: 20
   otherBossSpawnTime: 15
   redInvaderspawnAudio: {fileID: 8300000, guid: 26c29303bfcaba147900a585d1d9c0bc, type: 3}
 --- !u!1 &1261289701
