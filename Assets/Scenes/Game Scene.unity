@@ -462,7 +462,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6d996d3233a98944d8e24f3f70b83ea9, type: 3}
   speedBoostAfterTime: 8
   maxSpeed: 0.15
-  deacreaseSpeedBy: 0.05
+  deacreaseSpeedBy: 0.08
 --- !u!114 &364611012
 MonoBehaviour:
   m_ObjectHideFlags: 0

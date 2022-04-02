@@ -25,6 +25,7 @@ public class EnemyHit : Hit
     private void OnDisable()
     {
         CancelInvoke();
+        StopAllCoroutines();
     }
 
     public void TakeDamage()

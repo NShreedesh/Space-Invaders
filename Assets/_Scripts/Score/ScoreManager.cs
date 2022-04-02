@@ -27,4 +27,10 @@ public class ScoreManager : SceneLoadManager
         score += updateValue;
         scoreText.text = score.ToString();
     }
+
+    public void SetScoreWhenPlayerDies()
+    {
+        score = 0;
+        scoreText.text = score.ToString();
+    }
 }

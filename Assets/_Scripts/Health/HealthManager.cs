@@ -11,6 +11,11 @@ public class HealthManager : SceneLoadManager
     [SerializeField] private int health;
     public int Health { get { return health; } }
 
+
+    [Header("After Player Death")]
+    [SerializeField] private Canvas deathUICanvas;
+    [SerializeField] private Button playAgainButton;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,7 +31,10 @@ public class HealthManager : SceneLoadManager
 
     private void Start()
     {
-        health = healthImages.Length;
+        deathUICanvas.gameObject.SetActive(false);
+        playAgainButton.onClick.AddListener(PlayAgain);
+
+        SetHealth();
     }
 
     public void UpdateHealth()
@@ -47,5 +55,32 @@ public class HealthManager : SceneLoadManager
     private void Dead()
     {
         GameManager.Instance.ChangeGameState(GameState.Stop);
+
+        deathUICanvas.gameObject.SetActive(true);
+    }
+
+    private void PlayAgain()
+    {
+        GameManager.Instance.ChangeGameState(GameState.Play);
+        deathUICanvas.gameObject.SetActive(false);
+
+        SetHealth();
+        SetScore();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void SetHealth()
+    {
+        health = healthImages.Length;
+        foreach (var image in healthImages)
+        {
+            image.gameObject.SetActive(true);
+        }
+    }
+
+    private void SetScore()
+    {
+        ScoreManager.Instance.SetScoreWhenPlayerDies();
     }
 }
