@@ -10,6 +10,7 @@ public class ObjectPooling : MonoBehaviour
     [SerializeField] private Transform parentForSpawnningObject;
 
     private List<GameObject> _spawnningObjectList = new List<GameObject>();
+    public List<GameObject> SpawnningObjectList{get{return _spawnningObjectList;}}
 
     private void Start()
     {

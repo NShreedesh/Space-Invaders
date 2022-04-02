@@ -20,7 +20,7 @@ public class ScreenPositionHelper : MonoBehaviour
             Instance = this;
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
         CalculateScreenSides();

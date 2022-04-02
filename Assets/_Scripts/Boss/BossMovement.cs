@@ -8,7 +8,10 @@ public class BossMovement : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameState != GameState.Play) return; 
+        if (GameManager.Instance.gameState != GameState.Play)
+        {
+            return;
+        }
 
         Move();
 

@@ -14,9 +14,15 @@ public class EnemyMovement : MonoBehaviour
     [Header("Audio Info")]
     [SerializeField] private AudioClip[] movementAudioClip;
 
+    [Header("SpeedBoosting Info")]
+    [SerializeField] private float speedBoostAfterTime = 10;
+    [SerializeField] private float maxSpeed = 0.2f;
+    [SerializeField] private float deacreaseSpeedBy = 0.05f;
+
     private void Start()
     {
-        InvokeRepeating(nameof(Move), movementSpeed, movementSpeed);
+        StartCoroutine(Move());
+        InvokeRepeating(nameof(SpeedBoosting), speedBoostAfterTime, speedBoostAfterTime);
     }
 
     private void OnDisable()
@@ -24,31 +30,35 @@ public class EnemyMovement : MonoBehaviour
         CancelInvoke();
     }
 
-    private void Move()
+    private IEnumerator Move()
     {
-        if (GameManager.Instance.gameState != GameState.Play) return;
-
-
-        if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && _moveLeft)
+        while (true)
         {
-            MoveVertically(false);
-            return;
-        }
+            if (GameManager.Instance.gameState != GameState.Play) yield return new WaitUntil(() => GameManager.Instance.gameState == GameState.Play);
 
-        if (controller.rightEnemy.transform.position.x >= ScreenPositionHelper.Instance.ScreenRight.x - 0.5f && !_moveLeft)
-        {
-            MoveVertically(true);
-            return;
-        }
+            if (controller.leftEnemy.transform.position.x <= ScreenPositionHelper.Instance.ScreenLeft.x + 0.5f && _moveLeft)
+            {
+                MoveVertically(false);
+                yield return new WaitForSeconds(movementSpeed);
+            }
 
-        // change position of invaders parent with certain amount of offset.
-        if (_moveLeft)
-        {
-            MoveHorizontally(-offset);
-        }
-        else
-        {
-            MoveHorizontally(offset);
+            if (controller.rightEnemy.transform.position.x >= ScreenPositionHelper.Instance.ScreenRight.x - 0.5f && !_moveLeft)
+            {
+                MoveVertically(true);
+                yield return new WaitForSeconds(movementSpeed);
+            }
+
+            // change position of invaders parent with certain amount of offset.
+            if (_moveLeft)
+            {
+                MoveHorizontally(-offset);
+            }
+            else
+            {
+                MoveHorizontally(offset);
+            }
+
+            yield return new WaitForSeconds(movementSpeed);
         }
     }
 
@@ -71,5 +81,15 @@ public class EnemyMovement : MonoBehaviour
     {
         int movementClipCount = Random.Range(0, 4);
         AudioManager.Instance.Play_EnemyMovementAudio(movementAudioClip[movementClipCount]);
+    }
+
+    private void SpeedBoosting()
+    {
+        if (movementSpeed <= maxSpeed)
+        {
+            CancelInvoke();
+            return;
+        }
+        movementSpeed -= deacreaseSpeedBy;
     }
 }

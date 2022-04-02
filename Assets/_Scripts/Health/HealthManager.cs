@@ -2,13 +2,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class HealthManager : MonoBehaviour
+public class HealthManager : SceneLoadManager
 {
     public static HealthManager Instance { get; private set; }
 
     [Header("Score Info")]
     [SerializeField] private Image[] healthImages;
     [SerializeField] private int health;
+    public int Health { get { return health; } }
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
@@ -45,6 +46,6 @@ public class HealthManager : MonoBehaviour
 
     private void Dead()
     {
-        print("dead");
+        GameManager.Instance.ChangeGameState(GameState.Stop);
     }
 }

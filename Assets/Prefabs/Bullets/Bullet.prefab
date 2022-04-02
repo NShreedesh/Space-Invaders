@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  disableAfterTime: 3
+  disableAfterTime: 2
 --- !u!114 &-5933970901260125868
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class BulletController : MonoBehaviour
 
     [Header("Bullet Info")]
     [SerializeField] private float speed;
-    [SerializeField] private float disableAfterTime =  3f;
 
     private Transform _parentForTheBullet;
 
@@ -22,12 +21,17 @@ public class BulletController : MonoBehaviour
         _parentForTheBullet = transform.parent;
 
         BulletVelocity();
-        Invoke(nameof(DisableBullet), disableAfterTime);
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        CancelInvoke();
+        if (!gameObject.activeSelf) return;
+
+        if(transform.position.y >= -ScreenPositionHelper.Instance.ScreenLeft.y + 0.3f ||
+           transform.position.y <= ScreenPositionHelper.Instance.ScreenLeft.y - 0.3f)
+        {
+            DisableBullet();
+        }
     }
 
     private void BulletVelocity()

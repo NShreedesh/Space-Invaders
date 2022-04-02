@@ -267,7 +267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 772786200074499475}
   pool: {fileID: 1194856242}
-  waitTillShootTime: 0.15
   shootingAudioClip: {fileID: 8300000, guid: f8ffb3f45bf1b814c871b88afd6a50c6, type: 3}
 --- !u!114 &1258776396
 MonoBehaviour:

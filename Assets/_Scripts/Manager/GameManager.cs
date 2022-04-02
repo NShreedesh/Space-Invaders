@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Play;
     }
 
-    public void ChangeGameStateToPause(GameState state)
+    public void ChangeGameState(GameState state)
     {
         gameState = state;
     }

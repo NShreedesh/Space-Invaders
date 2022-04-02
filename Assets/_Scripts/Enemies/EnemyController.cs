@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -34,7 +33,7 @@ public class EnemyController : MonoBehaviour
     [Header("Invader List Info")]
     [SerializeField] private InvaderInfo[] invaderInfo;
     private SpriteRenderer[,] invaderList;
-
+    
     private void Start()
     {
         _xPosition = startingXSpacing;
@@ -43,6 +42,19 @@ public class EnemyController : MonoBehaviour
 
         InvokeRepeating(nameof(InvaderScanLeft), 1, 1);
         InvokeRepeating(nameof(InvaderScanRight), 1, 1);
+    }
+
+    private void Update()
+    {
+        if (CheckForAllEnemyDead() && GameManager.Instance.gameState != GameState.Stop)
+        {
+            GameManager.Instance.ChangeGameState(GameState.Stop);
+        }
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 
     private void EnemySpawn()
@@ -168,6 +180,29 @@ public class EnemyController : MonoBehaviour
                     return;
                 }
             }
+        }
+    }
+    
+
+    //Check if all the enemies are killed.
+    private bool CheckForAllEnemyDead()
+    {
+        bool check1 = CheckForEnemies(invadersSpawnParent1);
+        bool check2 = CheckForEnemies(invadersSpawnParent2);
+        bool check3 = CheckForEnemies(invadersSpawnParent3);
+
+        return true ? check1 && check2 && check3 : false;
+    }
+
+    private bool CheckForEnemies(Transform transformToCheck)
+    {
+        if(transformToCheck.childCount == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

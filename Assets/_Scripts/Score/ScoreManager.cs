@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : SceneLoadManager
 {
     public static ScoreManager Instance { get; private set; }
 
@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 

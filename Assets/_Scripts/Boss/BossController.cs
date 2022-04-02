@@ -17,7 +17,6 @@ public class BossController : MonoBehaviour
     [Header("Audio Source Info")]
     [SerializeField] private AudioClip redInvaderspawnAudio;
 
-
     private void Start()
     {
         _waitForSecondsForFirstBoss = new WaitForSeconds(firstBossSpawnTime);
@@ -33,6 +32,8 @@ public class BossController : MonoBehaviour
             if (totalNumberOfBoss > 0)
             {
                 yield return _waitForSecondsForFirstBoss;
+
+                if (GameManager.Instance.gameState != GameState.Play) continue;
 
                 Instantiate(redInvaderPrefab, new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x - 1,
                     -ScreenPositionHelper.Instance.ScreenLeft.y - 2),

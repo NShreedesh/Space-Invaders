@@ -316,12 +316,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHit: {fileID: 8300000, guid: 9ab9b8cc950ec4845bac23094d12715d, type: 3}
   isDead: 0
+  pauseAfterDamageTime: 0.5
   spriteRenderer: {fileID: 6372561475107507843}
   boxCollider: {fileID: 3102552934729951507}
   pointForEnemy: 20
   pointText: {fileID: 2576165020031266770}
   removeEnemyAfterTime: 1
-  pauseAfterDamageTime: 0.5
 --- !u!114 &1018150946305612464
 MonoBehaviour:
   m_ObjectHideFlags: 0

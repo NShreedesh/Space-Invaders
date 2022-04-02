@@ -15,6 +15,7 @@ public class ButtonClick : MonoBehaviour
 
     private void PlayButtonClicked()
     {
+        GameManager.Instance.ChangeGameState(GameState.Play);
         SceneManager.LoadScene(1);
     }
 }
