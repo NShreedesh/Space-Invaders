@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         if (CheckForAllEnemyDead() && GameManager.Instance.gameState != GameState.Stop)
         {
-            GameManager.Instance.ChangeGameState(GameState.Stop);
+            GameManager.Instance.ChangeGameState(GameState.Win);
         }
     }
 
