@@ -427,6 +427,7 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   leftEnemy: {fileID: 0}
   rightEnemy: {fileID: 0}
+  bottomEnemy: {fileID: 0}
   invaderInfo:
   - name: Invader 1
     sprite:
@@ -440,6 +441,7 @@ MonoBehaviour:
     sprite:
     - {fileID: 21300000, guid: 7a7e45ff18c925649a9894709bcd3c88, type: 3}
     - {fileID: 21300000, guid: 64424b585b7d3e745884e1253a5d82c1, type: 3}
+  player: {fileID: 1443070895}
 --- !u!114 &364611011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 364611010}
   offset: 0.25
-  movementSpeed: 1
+  movementSpeed: 0.1
   movementAudioClip:
   - {fileID: 8300000, guid: 1977740329176dc42a9a316dd41b301e, type: 3}
   - {fileID: 8300000, guid: d5dd956974a6840469bbc152ed5ed967, type: 3}
@@ -1448,6 +1450,11 @@ Transform:
   m_Father: {fileID: 364611009}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1443070895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 772786200074499176, guid: ee800749efdf57c469175779ae3b529a, type: 3}
+  m_PrefabInstance: {fileID: 772786199443507863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1511261992
 GameObject:
   m_ObjectHideFlags: 0

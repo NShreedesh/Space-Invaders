@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthManager : SceneLoadManager
@@ -10,11 +9,6 @@ public class HealthManager : SceneLoadManager
     [SerializeField] private Image[] healthImages;
     [SerializeField] private int health;
     public int Health { get { return health; } }
-
-
-    [Header("After Player Death")]
-    [SerializeField] private Canvas deathUICanvas;
-    [SerializeField] private Button playAgainButton;
 
     private void Awake()
     {
@@ -31,13 +25,10 @@ public class HealthManager : SceneLoadManager
 
     private void Start()
     {
-        deathUICanvas.gameObject.SetActive(false);
-        playAgainButton.onClick.AddListener(PlayAgain);
-
         SetHealth();
     }
 
-    public void UpdateHealth()
+    public void UpdateHealth(Animator playerAnimator)
     {
         health -= 1;
 
@@ -48,39 +39,22 @@ public class HealthManager : SceneLoadManager
             if (health <= 0)
             {
                 Dead();
+                playerAnimator.SetBool("dead", true);
             }
         }
     }
 
     private void Dead()
     {
-        GameManager.Instance.ChangeGameState(GameState.Stop);
-
-        deathUICanvas.gameObject.SetActive(true);
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
     }
 
-    private void PlayAgain()
-    {
-        GameManager.Instance.ChangeGameState(GameState.Play);
-        deathUICanvas.gameObject.SetActive(false);
-
-        SetHealth();
-        SetScore();
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void SetHealth()
+    public void SetHealth()
     {
         health = healthImages.Length;
         foreach (var image in healthImages)
         {
             image.gameObject.SetActive(true);
         }
-    }
-
-    private void SetScore()
-    {
-        ScoreManager.Instance.SetScoreWhenPlayerDies();
     }
 }

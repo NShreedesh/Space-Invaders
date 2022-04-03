@@ -66,6 +66,7 @@ public class AudioManager : MonoBehaviour
 
     public void Stop_RedInvaderSpawnEffectAudio()
     {
+        if(redInvaderSpawnEffectSource == null) return;
         redInvaderSpawnEffectSource.Stop();
     }
 }

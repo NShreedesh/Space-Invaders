@@ -29,10 +29,14 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Position Info")]
     [HideInInspector] public GameObject leftEnemy;
     [HideInInspector] public GameObject rightEnemy;
+    [HideInInspector] public GameObject bottomEnemy;
 
     [Header("Invader List Info")]
     [SerializeField] private InvaderInfo[] invaderInfo;
     private SpriteRenderer[,] invaderList;
+
+    [Header("Player Info")]
+    [SerializeField] private Transform player;
     
     private void Start()
     {
@@ -42,13 +46,19 @@ public class EnemyController : MonoBehaviour
 
         InvokeRepeating(nameof(InvaderScanLeft), 1, 1);
         InvokeRepeating(nameof(InvaderScanRight), 1, 1);
+        InvokeRepeating(nameof(InvaderScanBottom), 1, 1);
     }
 
     private void Update()
     {
-        if (CheckForAllEnemyDead() && GameManager.Instance.gameState != GameState.Stop)
+        if (CheckForAllEnemyDead() && GameManager.Instance.gameState != GameState.Win)
         {
             GameManager.Instance.ChangeGameState(GameState.Win);
+        }
+
+        if(bottomEnemy.transform.position.y <= player.position.y && GameManager.Instance.gameState != GameState.GameOver)
+        {
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
         }
     }
 
@@ -64,13 +74,19 @@ public class EnemyController : MonoBehaviour
         {
             for (int x = 0; x < columnCount; x++)
             {
-                // Spawn Left and right enemy for checking the position with screen during movement.
+                // Spawn Left, Bottom and right enemy for checking the position with screen during movement.
                 if (y == 0 && x == 0)
                 {
                     leftEnemy = new GameObject();
                     leftEnemy.name = "LeftEnemyPosition";
                     leftEnemy.transform.parent = transform;
                     leftEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
+
+
+                    bottomEnemy = new GameObject();
+                    bottomEnemy.name = "BottomEnemyPosition";
+                    bottomEnemy.transform.parent = transform;
+                    bottomEnemy.transform.position = new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition);
                 }
 
                 GameObject spawnnedInvader = Instantiate(invadersPrefabs[y], new Vector2(ScreenPositionHelper.Instance.ScreenLeft.x + _xPosition, _yPosition), Quaternion.identity);
@@ -165,7 +181,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Scans from right and leftEnemy Position moves to new Position.
+    // Scans from right and left Enemy Position moves to new Position.
     private void InvaderScanRight()
     {
         for (int x = columnCount - 1; x >= 0; x--)
@@ -182,8 +198,25 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    
 
+    // Scans from left and left Enemy Position moves to new Position.
+    private void InvaderScanBottom()
+    {
+        for (int y = 0; y < invadersPrefabs.Length; y++)
+        {
+            for (int x = 0; x < columnCount; x++)
+            {
+                if (invaderList[x, y] == null) continue;
+
+                else
+                {
+                    bottomEnemy.transform.position = invaderList[x, y].transform.position;
+                    return;
+                }
+            }
+        }
+    }
+    
     //Check if all the enemies are killed.
     private bool CheckForAllEnemyDead()
     {
