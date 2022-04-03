@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button playAgainButton;
     [SerializeField] private TMP_Text infoText;
 
+    [Header("Pause Time Info")]
+    [SerializeField] protected float pauseAfterDamageTime = 0.3f;
+    private WaitForSeconds waitForPauseAfterDamage;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        waitForPauseAfterDamage = new WaitForSeconds(pauseAfterDamageTime);
         SceneManager.sceneLoaded += NewSceneLoaded;
     }
 
@@ -49,13 +54,13 @@ public class GameManager : MonoBehaviour
     {
         gameState = state;
 
-        if(gameState == GameState.GameOver)
+        if (gameState == GameState.GameOver)
         {
             infoText.text = "Game Over!!!";
             deathUICanvas.gameObject.SetActive(true);
             AudioManager.Instance.Stop_RedInvaderSpawnEffectAudio();
         }
-        else if(gameState == GameState.Win)
+        else if (gameState == GameState.Win)
         {
             infoText.text = "Level Completed!!!";
             deathUICanvas.gameObject.SetActive(true);
@@ -63,10 +68,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator ChangeGameStateToPauseAndPlay(GameState state, float waitTime)
+    public IEnumerator ChangeGameStateToPauseAndPlay(GameState state)
     {
         gameState = state;
-        yield return new WaitForSeconds(waitTime);
+        yield return waitForPauseAfterDamage;
         gameState = GameState.Play;
     }
 

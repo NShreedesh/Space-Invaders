@@ -12,7 +12,7 @@ public class PlayerHit : Hit
 
         if (HealthManager.Instance.Health > 1)
         {
-            StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.GameOver, pauseAfterDamageTime));
+            StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.GameOver));
         }
     }
 }

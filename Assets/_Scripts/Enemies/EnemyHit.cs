@@ -35,7 +35,7 @@ public class EnemyHit : Hit
 
         if (HealthManager.Instance.Health > 1)
         {
-            StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.Pause, pauseAfterDamageTime));
+            StartCoroutine(GameManager.Instance.ChangeGameStateToPauseAndPlay(GameState.Pause));
         }
 
         spriteRenderer.enabled = false;

@@ -538,3 +538,4 @@ MonoBehaviour:
   deathUICanvas: {fileID: 428022047}
   playAgainButton: {fileID: 466603973}
   infoText: {fileID: 1431352136}
+  pauseAfterDamageTime: 0.2
