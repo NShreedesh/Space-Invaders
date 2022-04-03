@@ -456,13 +456,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 364611010}
   offset: 0.25
-  movementSpeed: 0.1
+  movementSpeed: 1
   movementAudioClip:
   - {fileID: 8300000, guid: 1977740329176dc42a9a316dd41b301e, type: 3}
   - {fileID: 8300000, guid: d5dd956974a6840469bbc152ed5ed967, type: 3}
   - {fileID: 8300000, guid: 91a5dfcd80630554b8593a087a1e88ba, type: 3}
   - {fileID: 8300000, guid: 6d996d3233a98944d8e24f3f70b83ea9, type: 3}
-  speedBoostAfterTime: 8
+  speedBoostAfterTime: 9
   maxSpeed: 0.15
   deacreaseSpeedBy: 0.08
 --- !u!114 &364611012

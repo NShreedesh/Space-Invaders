@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHit: {fileID: 8300000, guid: 9ab9b8cc950ec4845bac23094d12715d, type: 3}
   isDead: 0
-  pauseAfterDamageTime: 0.5
+  pauseAfterDamageTime: 0.1
   spriteRenderer: {fileID: 3126379744654729340}
   boxCollider: {fileID: 3126379744654729338}
   pointForEnemy: 10

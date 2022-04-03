@@ -302,5 +302,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHit: {fileID: 8300000, guid: f1ef11bcf71fa844b9e89de8df324ff6, type: 3}
   isDead: 0
-  pauseAfterDamageTime: 0.5
+  pauseAfterDamageTime: 0.3
   anim: {fileID: 506402218}
